@@ -8,9 +8,9 @@ const App: React.FC = () => {
     <div className="app-container">
       {/* Encabezado */}
       <header className="app-header">
-        <h1>Welcome to My Algorithm Web App Collection</h1>
-        <nav>
-          <ul>
+        <nav className="navbar">
+          <h1 className="navbar-title">My Algorithm Web App Collection</h1>
+          <ul className="navbar-links">
             <li><a href="/">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#algorithms">Algorithms</a></li>
@@ -18,7 +18,7 @@ const App: React.FC = () => {
           </ul>
         </nav>
       </header>
-
+      
       {/* Contenido principal */}
       <main className="app-main">
         <section id="home">

@@ -1,110 +1,74 @@
-/* Estilos generales para la aplicación en modo oscuro */
+/* Estilos para el contenedor general */
 body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
   background-color: #121212;
   color: #E0E0E0;
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
 }
 
-.app-container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* Encabezado */
+/* Estilos para la barra de navegación */
 .app-header {
   background-color: #1f1f1f;
-  padding: 20px;
-  color: #E0E0E0;
-  text-align: center;
-  border-bottom: 1px solid #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.3); /* Sombra para darle mejor separación */
 }
 
-.app-header h1 {
-  font-size: 2.5em;
+.navbar {
+  display: flex;
+  justify-content: space-between; /* Separar título y enlaces */
+  align-items: center;
+  padding: 15px 20px;
+}
+
+.navbar-title {
+  color: #BB86FC;
+  font-size: 1.8rem;
   margin: 0;
+  font-weight: bold;
 }
 
-.app-header nav ul {
+/* Estilo de los enlaces en la barra de navegación */
+.navbar-links {
   list-style: none;
+  margin: 0;
   padding: 0;
-  margin: 10px 0 0 0;
+  display: flex;
 }
 
-.app-header nav ul li {
-  display: inline;
-  margin: 0 15px;
+.navbar-links li {
+  margin-left: 20px; /* Espacio entre cada enlace */
 }
 
-.app-header nav ul li a {
-  color: #BB86FC;
+.navbar-links li a {
+  color: #E0E0E0;
   text-decoration: none;
-  font-size: 1.2em;
+  font-size: 1.1rem;
+  padding: 10px 15px;
+  transition: color 0.3s ease, background-color 0.3s ease;
 }
 
-.app-header nav ul li a:hover {
-  color: #03DAC6;
+.navbar-links li a:hover {
+  color: #03DAC6; /* Efecto hover para enlaces */
+  background-color: rgba(255, 255, 255, 0.1); /* Fondo sutil al pasar el ratón */
+  border-radius: 5px; /* Bordes redondeados para el hover */
 }
 
-/* Contenido principal */
+/* Estilos del contenido principal */
 .app-main {
-  padding: 30px 20px;
+  padding: 100px 20px; /* Espacio superior para evitar superposición con la navbar */
 }
 
-h2, h3 {
+h2 {
   color: #BB86FC;
+  margin-bottom: 10px;
 }
 
 p {
   font-size: 1.1em;
   line-height: 1.6;
-}
-
-/* Botones */
-button {
-  background-color: #03DAC6;
-  border: none;
-  color: #121212;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 5px;
-  margin: 15px 0;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #BB86FC;
-  color: #121212;
-}
-
-/* Pie de página */
-.app-footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #1f1f1f;
-  color: #E0E0E0;
-  border-top: 1px solid #333;
-}
-
-/* Enlaces en el cuerpo principal */
-a {
-  color: #BB86FC;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #03DAC6;
-}
-
-/* Estilos para enlaces dentro del contenido */
-ul {
-  padding-left: 20px;
-}
-
-ul li {
-  margin-bottom: 10px;
 }
 
