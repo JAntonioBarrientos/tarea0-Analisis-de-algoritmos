@@ -1,4 +1,7 @@
 # Recursos de Estudio para Análisis de Algoritmos
+**Alumno:** José Antonio Barrientos Sánchez
+
+**No. de Cuenta:** 423019269
 
 ## Temas Incluidos
 - Algoritmos de Ordenamiento y Búsqueda
