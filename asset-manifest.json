@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/tarea0-Analisis-de-algoritmos/static/css/main.962c247a.css",
+    "main.js": "/tarea0-Analisis-de-algoritmos/static/js/main.b9f42ebb.js",
+    "static/js/453.8ab44547.chunk.js": "/tarea0-Analisis-de-algoritmos/static/js/453.8ab44547.chunk.js",
+    "index.html": "/tarea0-Analisis-de-algoritmos/index.html",
+    "main.962c247a.css.map": "/tarea0-Analisis-de-algoritmos/static/css/main.962c247a.css.map",
+    "main.b9f42ebb.js.map": "/tarea0-Analisis-de-algoritmos/static/js/main.b9f42ebb.js.map",
+    "453.8ab44547.chunk.js.map": "/tarea0-Analisis-de-algoritmos/static/js/453.8ab44547.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.962c247a.css",
+    "static/js/main.b9f42ebb.js"
+  ]
+}
