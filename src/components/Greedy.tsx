@@ -1,103 +1,119 @@
-// src/components/Greedy.tsx
 import React from 'react';
-
+import './Greedy.css';
 const Greedy: React.FC = () => {
+  // Lista de videos de YouTube con sus títulos y URLs estándar
+  const youtubeVideos = [
+    {
+      title: 'Greedy Algorithms Explained',
+      url: 'https://www.youtube.com/watch?v=lfQvPHGtu6Q',
+    },
+    {
+      title: 'Introduction to Greedy Algorithms | GeeksforGeeks',
+      url: 'https://www.youtube.com/watch?v=HzeK7g8cD0Y',
+    },
+    {
+      title: 'Greedy Algorithms Tutorial – Solve Coding Challenges',
+      url: 'https://www.youtube.com/watch?v=bC7o8P_Ste4',
+    },
+    {
+      title: '3. Greedy Method - Introduction',
+      url: 'https://www.youtube.com/watch?v=ARvQcqJ_-NY',
+    },
+    {
+      title: 'Dynamic Programming vs Greedy Methods & Brute Force | Coin Change Problem (DPV 6.17)',
+      url: 'https://www.youtube.com/watch?v=sdIQEUvlfBU',
+    },
+  ];
+
+  // Función para extraer el ID del video de una URL estándar de YouTube
+  const getVideoId = (watchUrl: string): string | null => {
+    const urlObj = new URL(watchUrl);
+    return urlObj.searchParams.get('v');
+  };
+
   return (
     <div className="topic-content">
-      <h2>Algoritmos Greedy</h2>
+      <h2>Algoritmos Greedy (Voraces)</h2>
       
       <section>
         <h3>Introducción</h3>
         <p>
-          Los algoritmos Greedy (voraces) son una familia de algoritmos que construyen soluciones óptimas paso a paso, eligiendo en cada paso la opción que parece ser la mejor en ese momento sin considerar el efecto futuro. Estos algoritmos son eficientes y sencillos, pero no siempre garantizan una solución óptima para todos los problemas.
+          Los <strong>algoritmos Greedy (voraces)</strong> son una técnica de diseño de algoritmos que toman decisiones óptimas en cada paso con la esperanza de encontrar una solución globalmente óptima. Se utilizan en problemas donde una solución localmente óptima conduce a una solución global óptima.
         </p>
       </section>
 
       <section>
-        <h3>Características de los Algoritmos Greedy</h3>
-        <ul>
-          <li><strong>Selección Local Óptima:</strong> En cada paso, el algoritmo elige la mejor opción disponible sin reconsiderar las elecciones previas.</li>
-          <li><strong>Sin Retroceso:</strong> Una vez que se toma una decisión, no se revisa.</li>
-          <li><strong>Simplicidad:</strong> Son generalmente fáciles de implementar y comprender.</li>
-        </ul>
-      </section>
-
-      <section>
-        <h3>Ejemplos de Problemas que se Pueden Resolver con Algoritmos Greedy</h3>
-        <ul>
-          <li><strong>Problema del Cambio de Moneda:</strong> Encontrar la menor cantidad de monedas necesarias para dar un cambio específico.</li>
-          <li><strong>Problema de la Actividad:</strong> Seleccionar el máximo número de actividades que no se superponen en tiempo.</li>
-          <li><strong>Árbol de Expansión Mínima (MST):</strong> Encontrar un subconjunto de las aristas que conecta todos los vértices con el peso total mínimo.</li>
-        </ul>
-      </section>
-
-      <section>
-        <h3>Ejemplo de Código: Problema del Cambio de Moneda en Java</h3>
-        <pre>
-{`import java.util.Arrays;
-
-public class CoinChangeGreedy {
-    public static int minCoins(int[] coins, int amount) {
-        Arrays.sort(coins);
-        int count = 0;
-        for(int i = coins.length -1; i >=0; i--){
-            while(amount >= coins[i]){
-                amount -= coins[i];
-                count++;
-            }
-        }
-        if(amount !=0){
-            return -1; // Cambio no posible
-        }
-        return count;
-    }
-
-    public static void main(String[] args) {
-        int[] coins = {25, 10, 5, 1};
-        int amount = 63;
-        int result = minCoins(coins, amount);
-        if(result != -1){
-            System.out.println("Número mínimo de monedas: " + result);
-        } else {
-            System.out.println("Cambio no posible con las monedas disponibles.");
-        }
-    }
-}`}
-        </pre>
-      </section>
-
-      <section>
-        <h3>Recursos Adicionales</h3>
-        <ul>
-          <li>
-            <a href="https://es.wikipedia.org/wiki/Algoritmo_greedy" target="_blank" rel="noopener noreferrer">
-              Wikipedia: Algoritmo Greedy
-            </a>
-          </li>
-          <li>
-            <a href="https://www.geeksforgeeks.org/greedy-algorithms/" target="_blank" rel="noopener noreferrer">
-              GeeksforGeeks: Greedy Algorithms
-            </a>
-          </li>
-          <li>
-            <a href="https://www.youtube.com/watch?v=9XtwzdI9nKU" target="_blank" rel="noopener noreferrer">
-              Video: Introducción a los Algoritmos Greedy
-            </a>
-          </li>
-          <li>
-            <a href="https://visualgo.net/en/greedy" target="_blank" rel="noopener noreferrer">
-              Visualgo: Visualización de Algoritmos Greedy
-            </a>
-          </li>
-        </ul>
-      </section>
-
-      <section>
-        <h3>Diagramas y Visualizaciones</h3>
-        <p>
-          Utiliza herramientas como <a href="https://visualgo.net/en/greedy" target="_blank" rel="noopener noreferrer">Visualgo</a> para visualizar cómo funcionan los algoritmos Greedy en problemas específicos.
-        </p>
-        <img src="https://visualgo.net/en/greedy" alt="Visualización de Algoritmos Greedy" style={{ width: '100%', maxWidth: '600px' }} />
+        <h3>Recursos</h3>
+        
+        <div className="resources-section">
+          
+          {/* Páginas Web */}
+          <div className="resource-category">
+            <h4>Páginas Web</h4>
+            <ul>
+              <li>
+                <a href="https://www.geeksforgeeks.org/introduction-to-greedy-algorithm-data-structures-and-algorithm-tutorials/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">
+                  GeeksforGeeks: Introduction to Greedy Algorithm
+                </a>
+              </li>
+              <li>
+                <a href="https://www.tutorialspoint.com/data_structures_algorithms/greedy_algorithms.htm?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">
+                  TutorialsPoint: Greedy Algorithms
+                </a>
+              </li>
+              <li>
+                <a href="https://www.hackerearth.com/practice/algorithms/greedy/basics-of-greedy-algorithms/tutorial/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">
+                  HackerEarth: Basics of Greedy Algorithms
+                </a>
+              </li>
+              <li>
+                <a href="https://www.w3schools.com/dsa/dsa_ref_greedy.php?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">
+                  W3Schools: DSA Greedy Algorithms
+                </a>
+              </li>
+              <li className="highlighted-link">
+                <a href="https://web.stanford.edu/class/archive/cs/cs161/cs161.1138/handouts/120%20Guide%20to%20Greedy%20Algorithms.pdf?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">
+                  Stanford University: Guide to Greedy Algorithms
+                </a>
+              </li>
+            </ul>
+          </div>
+          
+          {/* Videos de YouTube */}
+          <div className="resource-category">
+            <h4>Videos de YouTube</h4>
+            <div className="youtube-videos">
+              {youtubeVideos.map((video, index) => {
+                const videoId = getVideoId(video.url);
+                const embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}` : '';
+                return (
+                  <div className="youtube-video" key={index}>
+                    <p>{video.title}</p>
+                    {embedUrl ? (
+                      <iframe
+                        width="100%"
+                        height="200"
+                        src={embedUrl}
+                        title={video.title}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                    ) : (
+                      <p>URL de video inválida.</p>
+                    )}
+                    {videoId && (
+                      <a href={`https://www.youtube.com/watch?v=${videoId}`} target="_blank" rel="noopener noreferrer">
+                        Ver Video
+                      </a>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          
+        </div>
       </section>
     </div>
   );

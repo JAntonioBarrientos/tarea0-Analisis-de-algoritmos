@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://JAntonioBarrientos.github.io/tarea0-Analisis-de-algoritmos",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -9,7 +10,6 @@
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.108",
     "@types/react-dom": "^18.3.0",
-    "gh-pages": "^6.1.1",
     "prismjs": "^1.29.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -22,7 +22,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -44,6 +46,7 @@
   },
   "devDependencies": {
     "@types/react": "^19.0.1",
-    "typescript": "^5.7.2"
+    "gh-pages": "^6.2.0",
+    "typescript": "^4.9.5"
   }
 }

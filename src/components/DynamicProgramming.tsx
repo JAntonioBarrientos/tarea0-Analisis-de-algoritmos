@@ -1,7 +1,38 @@
-// src/components/DynamicProgramming.tsx
+
 import React from 'react';
+import './DynamicProgramming.css';
 
 const DynamicProgramming: React.FC = () => {
+  // Lista de videos de YouTube con sus títulos y URLs embebidos
+  const youtubeVideos = [
+    {
+      title: 'What Is Dynamic Programming and How To Use It',
+      url: 'https://www.youtube.com/embed/vYquumk4nWw',
+    },
+    {
+      title: '5 Simple Steps for Solving Dynamic Programming Problems',
+      url: 'https://www.youtube.com/embed/aPQY__2H3tE',
+    },
+    {
+      title: 'Mastering Dynamic Programming - How to solve any interview problem (Part 1)',
+      url: 'https://www.youtube.com/embed/Hdr64lKQ3e4',
+    },
+    {
+      title: 'Bottom Up vs Top Down Dynamic Programming vs Recursion | Fibonacci Sequence',
+      url: 'https://www.youtube.com/embed/M-NeO_9BU_A',
+    },
+    {
+      title: 'Algorithms: Memoization and Dynamic Programming',
+      url: 'https://www.youtube.com/embed/P8Xa2BitN3I',
+    },
+  ];
+
+  // Función para extraer el ID del video embebido
+  const getVideoId = (embedUrl: string): string | null => {
+    const parts = embedUrl.split('/embed/');
+    return parts.length > 1 ? parts[1].split('?')[0] : null;
+  };
+
   return (
     <div className="topic-content">
       <h2>Programación Dinámica</h2>
@@ -9,88 +40,84 @@ const DynamicProgramming: React.FC = () => {
       <section>
         <h3>Introducción</h3>
         <p>
-          La programación dinámica es una técnica de diseño de algoritmos que resuelve problemas complejos dividiéndolos en subproblemas más simples. Se utiliza cuando los subproblemas se solapan y se puede almacenar sus soluciones para evitar cálculos redundantes.
+          La <strong>programación dinámica</strong> es una técnica de diseño de algoritmos que resuelve problemas complejos dividiéndolos en subproblemas más simples. Se utiliza cuando los subproblemas se solapan y se puede almacenar sus soluciones para evitar cálculos redundantes, mejorando así la eficiencia.
         </p>
       </section>
 
       <section>
-        <h3>Conceptos Clave</h3>
-        <ul>
-          <li><strong>Subestructura Óptima:</strong> Una solución óptima del problema contiene soluciones óptimas de sus subproblemas.</li>
-          <li><strong>Memorización:</strong> Almacenar los resultados de los subproblemas ya resueltos para evitar recalculaciones.</li>
-          <li><strong>Tabulación:</strong> Resolver los subproblemas en orden y almacenar sus soluciones en una tabla.</li>
-        </ul>
-      </section>
-
-      <section>
-        <h3>Ejemplos Comunes</h3>
-        <ul>
-          <li><strong>Problema de la Mochila (Knapsack Problem):</strong> Determinar la combinación de objetos que maximiza el valor sin exceder la capacidad de la mochila.</li>
-          <li><strong>Secuencia de Fibonacci:</strong> Calcular el enésimo número de Fibonacci de manera eficiente.</li>
-          <li><strong>Problema de la Cadena de Matrices (Matrix Chain Multiplication):</strong> Encontrar la secuencia óptima de multiplicación de matrices.</li>
-        </ul>
-      </section>
-
-      <section>
-        <h3>Ejemplo de Código: Secuencia de Fibonacci en Python</h3>
-        <pre>
-{`# Programación Dinámica con Tabulación
-def fibonacci(n):
-    fib = [0, 1]
-    for i in range(2, n+1):
-        fib.append(fib[i-1] + fib[i-2])
-    return fib[n]
-
-print(fibonacci(10))  # Salida: 55`}
-        </pre>
-
-        <h4>Versión con Memorización</h4>
-        <pre>
-{`# Programación Dinámica con Memorización
-def fibonacci_memo(n, memo={}):
-    if n in memo:
-        return memo[n]
-    if n <= 1:
-        return n
-    memo[n] = fibonacci_memo(n-1, memo) + fibonacci_memo(n-2, memo)
-    return memo[n]
-
-print(fibonacci_memo(10))  # Salida: 55`}
-        </pre>
-      </section>
-
-      <section>
-        <h3>Recursos Adicionales</h3>
-        <ul>
-          <li>
-            <a href="https://es.wikipedia.org/wiki/Programaci%C3%B3n_din%C3%A1mica" target="_blank" rel="noopener noreferrer">
-              Wikipedia: Programación Dinámica
-            </a>
-          </li>
-          <li>
-            <a href="https://www.geeksforgeeks.org/dynamic-programming/" target="_blank" rel="noopener noreferrer">
-              GeeksforGeeks: Dynamic Programming
-            </a>
-          </li>
-          <li>
-            <a href="https://www.youtube.com/watch?v=OQ5jsbhAv_M" target="_blank" rel="noopener noreferrer">
-              Video: Introducción a la Programación Dinámica
-            </a>
-          </li>
-          <li>
-            <a href="https://visualgo.net/en/dp" target="_blank" rel="noopener noreferrer">
-              Visualgo: Visualización de Programación Dinámica
-            </a>
-          </li>
-        </ul>
-      </section>
-
-      <section>
-        <h3>Diagramas y Visualizaciones</h3>
-        <p>
-          Para entender mejor cómo funcionan los algoritmos de programación dinámica, puedes utilizar herramientas como <a href="https://visualgo.net/en/dp" target="_blank" rel="noopener noreferrer">Visualgo</a>.
-        </p>
-        <img src="https://visualgo.net/en/dp" alt="Visualización de Programación Dinámica" style={{ width: '100%', maxWidth: '600px' }} />
+        <h3>Recursos</h3>
+        
+        <div className="resources-section">
+          
+          {/* Videos de YouTube */}
+          <div className="resource-category">
+            <h4>Videos de YouTube</h4>
+            <div className="youtube-videos">
+              {youtubeVideos.map((video, index) => {
+                const videoId = getVideoId(video.url);
+                return (
+                  <div className="youtube-video" key={index}>
+                    <p>{video.title}</p>
+                    <iframe
+                      width="100%"
+                      height="200"
+                      src={video.url}
+                      title={video.title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                    {videoId && (
+                      <a href={`https://www.youtube.com/watch?v=${videoId}`} target="_blank" rel="noopener noreferrer">
+                        Ver Video
+                      </a>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          
+          {/* Páginas Web */}
+          <div className="resource-category">
+            <h4>Páginas Web</h4>
+            <ul>
+              <li>
+                <a href="https://www.geeksforgeeks.org/dynamic-programming/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">
+                  GeeksforGeeks: Dynamic Programming
+                </a>
+              </li>
+              <li>
+                <a href="https://stackoverflow.blog/2022/01/31/the-complete-beginners-guide-to-dynamic-programming/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">
+                  Stack Overflow Blog: The Complete Beginner's Guide to Dynamic Programming
+                </a>
+              </li>
+              <li>
+                <a href="https://www.geeksforgeeks.org/complete-guide-to-dynamic-programming/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">
+                  GeeksforGeeks: Complete Guide to Dynamic Programming
+                </a>
+              </li>
+              <li>
+                <a href="https://www.w3schools.com/dsa/dsa_ref_dynamic_programming.php?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">
+                  W3Schools: DSA Dynamic Programming
+                </a>
+              </li>
+              <li>
+                <a href="https://www.freecodecamp.org/news/learn-dynamic-programing-to-solve-coding-challenges/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">
+                  freeCodeCamp: Dynamic Programming for Beginners
+                </a>
+              </li>
+              <li className="highlighted-link">
+                <a href="https://thelinuxcode.com/dynamic-programming-made-easy-for-beginners/?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">
+                  TheLinuxCode: Dynamic Programming Made Easy for Beginners
+                </a>
+              </li>
+              {/* Añade más páginas web si es necesario */}
+            </ul>
+            
+          </div>
+          
+        </div>
       </section>
     </div>
   );

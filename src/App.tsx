@@ -10,33 +10,6 @@ import ComputationalGeometry from './components/ComputationalGeometry';
 import GraphAlgorithms from './components/GraphAlgorithms';
 import FlowAlgorithms from './components/FlowAlgorithms';
 
-// Enlaces de documentación (puedes actualizar las URLs según tus recursos)
-const documentationLinks: { [key: string]: { name: string; url: string } } = {
-  'sorting-and-search': {
-    name: 'Algoritmos de Ordenamiento y Búsqueda',
-    url: 'https://github.com/tu_usuario/tu_repositorio/documentacion/ordenamiento-busqueda.md',
-  },
-  'dynamic-programming': {
-    name: 'Programación Dinámica',
-    url: 'https://github.com/tu_usuario/tu_repositorio/documentacion/programacion-dinamica.md',
-  },
-  'greedy': {
-    name: 'Algoritmos Greedy',
-    url: 'https://github.com/tu_usuario/tu_repositorio/documentacion/greedy.md',
-  },
-  'computational-geometry': {
-    name: 'Geometría Computacional',
-    url: 'https://github.com/tu_usuario/tu_repositorio/documentacion/geometria-computacional.md',
-  },
-  'graph-algorithms': {
-    name: 'Algoritmos en Grafos',
-    url: 'https://github.com/tu_usuario/tu_repositorio/documentacion/algoritmos-grafos.md',
-  },
-  'flow-algorithms': {
-    name: 'Flujos en Grafos',
-    url: 'https://github.com/tu_usuario/tu_repositorio/documentacion/flujos-grafos.md',
-  },
-};
 
 const App: React.FC = () => {
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
@@ -64,7 +37,56 @@ const App: React.FC = () => {
       case 'flow-algorithms':
         return <FlowAlgorithms />;
       default:
-        return <div>Selecciona un tema de la barra lateral para ver el contenido.</div>;
+        return <div>
+          <h2>Recursos generales para algoritmos:</h2>
+          <ul>
+            <li>
+              <strong>Donald E. Knuth</strong>
+              <ul>
+                <li><em>The Art of Computer Programming, Volumes 1-3</em></li>
+                <li>Volumen 1: Fundamental Algorithms</li>
+                <li>Volumen 2: Seminumerical Algorithms</li>
+                <li>Volumen 3: Sorting and Searching</li>
+                <li>Editorial: Addison-Wesley</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Robert Sedgewick</strong>
+              <ul>
+                <li><em>Algorithms</em></li>
+                <li>Editorial: Addison-Wesley</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Jon Kleinberg y Éva Tardos</strong>
+              <ul>
+                <li><em>Algorithm Design</em></li>
+                <li>Editorial: Pearson</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Steven S. Skiena</strong>
+              <ul>
+                <li><em>The Algorithm Design Manual</em></li>
+                <li>Editorial: Springer</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, Clifford Stein</strong>
+              <ul>
+                <li><em>Introduction to Algorithms</em></li>
+                <li>Editorial: MIT Press</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Michael T. Goodrich y Roberto Tamassia</strong>
+              <ul>
+                <li><em>Algorithm Design and Applications</em></li>
+                <li>Editorial: Wiley</li>
+              </ul>
+            </li>
+          </ul>
+        </div>;
     }
   };
 
@@ -88,8 +110,8 @@ const App: React.FC = () => {
               <li onClick={() => setSelectedTopic('dynamic-programming')}>Programación Dinámica</li>
               <li onClick={() => setSelectedTopic('greedy')}>Greedy</li>
               <li onClick={() => setSelectedTopic('computational-geometry')}>Geometría Computacional</li>
-              <li onClick={() => setSelectedTopic('graph-algorithms')}>Algoritmos en Grafos</li>
-              <li onClick={() => setSelectedTopic('flow-algorithms')}>Flujos en Grafos</li>
+              <li onClick={() => setSelectedTopic('graph-algorithms')}>Algoritmos en Gráficas</li>
+              <li onClick={() => setSelectedTopic('flow-algorithms')}>Flujos en redes</li>
             </ul>
           )}
         </div>
@@ -98,19 +120,6 @@ const App: React.FC = () => {
       {/* Contenido principal */}
       <main className="main-content">
         {renderContent()}
-
-        {/* Sección de Documentación Siempre Desplegable */}
-        {selectedTopic && documentationLinks[selectedTopic] && (
-          <div className="documentation-section">
-            <h3>Documentación de {documentationLinks[selectedTopic].name}</h3>
-            <div className="documentation-content">
-              <p>Esta sección contiene la explicación del tema correspondiente.</p>
-              <a href={documentationLinks[selectedTopic].url} target="_blank" rel="noopener noreferrer">
-                Ver documentación en GitHub
-              </a>
-            </div>
-          </div>
-        )}
       </main>
     </div>
   );

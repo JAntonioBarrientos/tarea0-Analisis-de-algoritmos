@@ -1,153 +1,149 @@
-// src/components/GraphAlgorithms.tsx
 import React from 'react';
+import './ComputationalGeometry.css';
 
-const GraphAlgorithms: React.FC = () => {
+const ComputationalGeometry: React.FC = () => {
+  // Lista de videos de YouTube con sus títulos y URLs estándar
+  const youtubeVideos = [
+    {
+      title: 'Convex Hull Algorithms',
+      url: 'https://www.youtube.com/watch?v=fTqPVjy0rzU',
+    },
+    {
+      title: 'Plane Sweep Algorithm for finding Line Segment Intersections',
+      url: 'https://www.youtube.com/watch?v=0mwScBSTHB4',
+    },
+    {
+      title: 'Doubly-connected edge lists for planar subdivisions',
+      url: 'https://www.youtube.com/watch?v=QGdv1DCLhIQ',
+    },
+    {
+      title: 'Polygon Triangulation, Art Gallery Problem',
+      url: 'https://www.youtube.com/watch?v=pmVn5KylI1Q',
+    },
+    {
+      title: 'Vertical decomposition for point locations, part 1: the data structure',
+      url: 'https://www.youtube.com/watch?v=UP1PLhlhs9w',
+    },
+    {
+      title: 'Vertical decomposition for point locations, part 2: randomized incremental construction',
+      url: 'https://www.youtube.com/watch?v=3d5n765Twfk',
+    },
+  ];
+
+  // Lista de páginas web con sus títulos y URLs
+  const webResources = [
+    {
+      title: 'GeeksforGeeks: Computational Geometry – Algorithms for Geometry',
+      url: 'https://www.geeksforgeeks.org/what-is-computational-geometry-and-how-is-it-applied-in-solving-geometric-problems/?utm_source=chatgpt.com',
+      highlighted: false,
+    },
+    {
+      title: 'MIT OpenCourseWare: Computational Geometry (2.158J)',
+      url: 'https://ocw.mit.edu/courses/2-158j-computational-geometry-spring-2003/?utm_source=chatgpt.com',
+      highlighted: false,
+    },
+    {
+      title: 'Stanford University: Basic Algorithms and Combinatorics in Computational Geometry',
+      url: 'https://graphics.stanford.edu/courses/cs164-09-spring/Handouts/basic.pdf?utm_source=chatgpt.com',
+      highlighted: false,
+    },
+    {
+      title: 'University of Oxford: Computational Geometry Lecture Notes',
+      url: 'https://www.robots.ox.ac.uk/~ian/Teaching/CompGeom/lec1.pdf?utm_source=chatgpt.com',
+      highlighted: false,
+    },
+    {
+      title: 'MIT OpenCourseWare: Design and Analysis of Algorithms (6.046J) – Lecture 23: Computational Geometry',
+      url: 'https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/resources/mit6_046js12_lec23/?utm_source=chatgpt.com',
+      highlighted: false,
+    },
+    {
+      title: 'University of Central Florida: Basics of Computational Geometry',
+      url: 'https://www.cs.ucf.edu/~dmarino/progcontests/cop4516/notes/Geometry-Nadeem.pdf?utm_source=chatgpt.com',
+      highlighted: true, // Enfatizamos esta página
+    },
+  ];
+
+  // Función para extraer el ID del video de una URL estándar de YouTube
+  const getVideoId = (watchUrl: string): string | null => {
+    try {
+      const urlObj = new URL(watchUrl);
+      return urlObj.searchParams.get('v');
+    } catch (error) {
+      console.error('URL inválida:', watchUrl);
+      return null;
+    }
+  };
+
   return (
     <div className="topic-content">
-      <h2>Algoritmos en Grafos</h2>
+      <h2>Geometría Computacional</h2>
       
       <section>
         <h3>Introducción</h3>
         <p>
-          Los grafos son estructuras de datos que consisten en nodos (vértices) y aristas (edges) que conectan pares de nodos. Los algoritmos en grafos son fundamentales para resolver una variedad de problemas en informática, como rutas más cortas, flujo máximo, y componentes conectados.
+          La <strong>geometría computacional</strong> es una rama de la informática que estudia algoritmos para resolver problemas geométricos. Es fundamental en áreas como gráficos por computadora, diseño asistido por computadora (CAD), y análisis de datos espaciales.
         </p>
       </section>
 
       <section>
-        <h3>Tipos de Grafos</h3>
-        <ul>
-          <li><strong>Grafos Dirigidos:</strong> Las aristas tienen una dirección específica de un nodo a otro.</li>
-          <li><strong>Grafos No Dirigidos:</strong> Las aristas no tienen dirección; la conexión es bidireccional.</li>
-          <li><strong>Grafos Ponderados:</strong> Las aristas tienen un peso o costo asociado.</li>
-          <li><strong>Grafos No Ponderados:</strong> Las aristas no tienen peso asociado.</li>
-        </ul>
-      </section>
-
-      <section>
-        <h3>Algoritmos Comunes en Grafos</h3>
-        <ul>
-          <li><strong>Algoritmo de Dijkstra:</strong> Encuentra las rutas más cortas desde un nodo de origen a todos los demás nodos en un grafo ponderado.</li>
-          <li><strong>Algoritmo de Kruskal:</strong> Encuentra el Árbol de Expansión Mínima (MST) de un grafo.</li>
-          <li><strong>Algoritmo de Prim:</strong> Otro algoritmo para encontrar el MST.</li>
-          <li><strong>Búsqueda en Anchura (BFS) y Búsqueda en Profundidad (DFS):</strong> Algoritmos para explorar grafos.</li>
-          <li><strong>Algoritmo de Floyd-Warshall:</strong> Encuentra las rutas más cortas entre todos los pares de nodos.</li>
-        </ul>
-      </section>
-
-      <section>
-        <h3>Ejemplo de Código: Algoritmo de Dijkstra en JavaScript</h3>
-        <pre>
-{`// Representación del grafo como una lista de adyacencia
-const graph = {
-  A: { B: 1, C: 4 },
-  B: { A: 1, C: 2, D: 5 },
-  C: { A: 4, B: 2, D: 1 },
-  D: { B: 5, C: 1 }
-};
-
-function dijkstra(graph, start) {
-  const distances = {};
-  const visited = new Set();
-  const priorityQueue = new PriorityQueue();
-
-  // Inicializar distancias
-  for (let node in graph) {
-    distances[node] = node === start ? 0 : Infinity;
-  }
-
-  priorityQueue.enqueue(start, 0);
-
-  while (!priorityQueue.isEmpty()) {
-    const { element: current } = priorityQueue.dequeue();
-    if (visited.has(current)) continue;
-    visited.add(current);
-
-    for (let neighbor in graph[current]) {
-      const newDist = distances[current] + graph[current][neighbor];
-      if (newDist < distances[neighbor]) {
-        distances[neighbor] = newDist;
-        priorityQueue.enqueue(neighbor, newDist);
-      }
-    }
-  }
-
-  return distances;
-}
-
-// Implementación de una Cola de Prioridad simple
-class PriorityQueue {
-  constructor() {
-    this.collection = [];
-  }
-
-  enqueue(element, priority) {
-    const newNode = { element, priority };
-    if (this.isEmpty()) {
-      this.collection.push(newNode);
-    } else {
-      let added = false;
-      for (let i = 0; i < this.collection.length; i++) {
-        if (newNode.priority < this.collection[i].priority) {
-          this.collection.splice(i, 0, newNode);
-          added = true;
-          break;
-        }
-      }
-      if (!added) {
-        this.collection.push(newNode);
-      }
-    }
-  }
-
-  dequeue() {
-    return this.collection.shift();
-  }
-
-  isEmpty() {
-    return this.collection.length === 0;
-  }
-}
-
-const distances = dijkstra(graph, 'A');
-console.log(distances); // Salida: { A: 0, B: 1, C: 3, D: 4 }`}
-        </pre>
-      </section>
-
-      <section>
-        <h3>Recursos Adicionales</h3>
-        <ul>
-          <li>
-            <a href="https://es.wikipedia.org/wiki/Grafo_(matem%C3%A1ticas)" target="_blank" rel="noopener noreferrer">
-              Wikipedia: Grafo (Matemáticas)
-            </a>
-          </li>
-          <li>
-            <a href="https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/" target="_blank" rel="noopener noreferrer">
-              GeeksforGeeks: Graph Data Structure and Algorithms
-            </a>
-          </li>
-          <li>
-            <a href="https://www.youtube.com/watch?v=pcKY4hjDrxk" target="_blank" rel="noopener noreferrer">
-              Video: Algoritmo de Dijkstra
-            </a>
-          </li>
-          <li>
-            <a href="https://visualgo.net/en/sssp" target="_blank" rel="noopener noreferrer">
-              Visualgo: Visualización de Algoritmos de Grafos
-            </a>
-          </li>
-        </ul>
-      </section>
-
-      <section>
-        <h3>Diagramas y Visualizaciones</h3>
-        <p>
-          Herramientas como <a href="https://visualgo.net/en/sssp" target="_blank" rel="noopener noreferrer">Visualgo</a> te permiten visualizar cómo funcionan los algoritmos de grafos, incluyendo el Algoritmo de Dijkstra.
-        </p>
-        <img src="https://visualgo.net/en/sssp" alt="Visualización de Algoritmos en Grafos" style={{ width: '100%', maxWidth: '600px' }} />
+        <h3>Recursos</h3>
+        
+        <div className="resources-section">
+          
+          {/* Páginas Web */}
+          <div className="resource-category">
+            <h4>Páginas Web</h4>
+            <ul>
+              {webResources.map((resource, index) => (
+                <li key={index} className={resource.highlighted ? 'highlighted-link' : ''}>
+                  <a href={resource.url} target="_blank" rel="noopener noreferrer">
+                    {resource.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            {webResources.some(resource => resource.highlighted)}
+          </div>
+          
+          {/* Videos de YouTube */}
+          <div className="resource-category">
+            <h4>Videos de YouTube</h4>
+            <div className="youtube-videos">
+              {youtubeVideos.map((video, index) => {
+                const videoId = getVideoId(video.url);
+                const embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}` : '';
+                return (
+                  <div className="youtube-video" key={index}>
+                    <p>{video.title}</p>
+                    {embedUrl ? (
+                      <iframe
+                        width="100%"
+                        height="200"
+                        src={embedUrl}
+                        title={video.title}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                    ) : (
+                      <p>URL de video inválida.</p>
+                    )}
+                    {videoId && (
+                      <a href={`https://www.youtube.com/watch?v=${videoId}`} target="_blank" rel="noopener noreferrer">
+                        Ver Video
+                      </a>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          
+        </div>
       </section>
     </div>
   );
 };
 
-export default GraphAlgorithms;
+export default ComputationalGeometry;

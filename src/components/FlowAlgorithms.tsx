@@ -1,131 +1,142 @@
-// src/components/FlowAlgorithms.tsx
 import React from 'react';
-
+import './FlowAlgorithms.css'; 
 const FlowAlgorithms: React.FC = () => {
+  // Lista de videos de YouTube con sus títulos y URLs estándar
+  const youtubeVideos = [
+    {
+      title: 'Max Flow Ford Fulkerson | Network Flow | Graph Theory',
+      url: 'https://www.youtube.com/watch?v=pcKY4hjDrxk',
+    },
+    {
+      title: 'Max Flow Ford Fulkerson | Source Code',
+      url: 'https://www.youtube.com/watch?v=Xu8jjJnwvxE',
+    },
+    {
+      title: 'Unweighted Bipartite Matching | Network Flow | Graph Theory',
+      url: 'https://www.youtube.com/watch?v=GhjwOiJ4SqU',
+    },
+    {
+      title: 'Bipartite Matching | Mice and Owls problem | Network Flow | Graph Theory',
+      url: 'https://www.youtube.com/watch?v=ar6x7dHfGHA',
+    },
+    {
+      title: "Edmonds Karp Algorithm | Network Flow | Graph Theory",
+      url: 'https://www.youtube.com/watch?v=RppuJYwlcI8',
+    },
+    {
+      title: "Edmonds Karp Algorithm | Network Flow | Graph Theory",
+      url: 'https://www.youtube.com/watch?v=RppuJYwlcI8',
+    },
+    {
+      title: "Edmonds Karp Algorithm | Source Code",
+      url: 'https://www.youtube.com/watch?v=OViaWp9Q-Oc',
+    },
+    {
+      title: "Dinic's Algorithm | Network Flow | Graph Theory",
+      url: 'https://www.youtube.com/watch?v=M6cm8UeeziI',
+    },
+    {
+      title: "Dinic's Algorithm | Network Flow | Source Code",
+      url: 'https://www.youtube.com/watch?v=_SdF4KK_dyM',
+    },
+  ];
+
+  // Lista de páginas web con sus títulos y URLs
+  const webResources = [
+    {
+      title: 'GeeksforGeeks: Ford-Fulkerson Algorithm for Maximum Flow Problem',
+      url: 'https://www.geeksforgeeks.org/ford-fulkerson-algorithm-for-maximum-flow-problem/?utm_source=chatgpt.com',
+      highlighted: false,
+    },
+    {
+      title: 'MIT OpenCourseWare: Lecture 13 - Network Flow',
+      url: 'https://ocw.mit.edu/courses/6-046j-design-and-analysis-of-algorithms-spring-2012/7c2927794e61bd70c14c07728fa54375_MIT6_046JS12_lec13.pdf?utm_source=chatgpt.com',
+      highlighted: false,
+    },
+    {
+      title: 'MIT OpenCourseWare: Network Flows Lecture Notes',
+      url: 'https://ocw.mit.edu/courses/6-854j-advanced-algorithms-fall-2008/resources/notes_flow/?utm_source=chatgpt.com',
+      highlighted: true, // Enfatizamos esta página
+    },
+  ];
+
+  // Función para extraer el ID del video de una URL estándar de YouTube
+  const getVideoId = (watchUrl: string): string | null => {
+    try {
+      const urlObj = new URL(watchUrl);
+      return urlObj.searchParams.get('v');
+    } catch (error) {
+      console.error('URL inválida:', watchUrl);
+      return null;
+    }
+  };
+
   return (
     <div className="topic-content">
-      <h2>Flujos en Grafos</h2>
+      <h2>Algoritmos de Flujo (Flow Algorithms)</h2>
       
       <section>
         <h3>Introducción</h3>
         <p>
-          Los algoritmos de flujo en grafos se utilizan para resolver problemas relacionados con el flujo de recursos a través de una red. Un ejemplo clásico es el problema del flujo máximo, donde se busca la máxima cantidad de flujo que puede enviarse desde una fuente a un sumidero en una red con capacidades limitadas.
+          Los <strong>algoritmos de flujo</strong> son fundamentales en la teoría de gráficas y la optimización. Se utilizan para resolver problemas relacionados con el flujo máximo en redes, asignaciones y emparejamientos. Estos algoritmos son esenciales en áreas como redes de telecomunicaciones, transporte, logística y más.
         </p>
       </section>
 
       <section>
-        <h3>Conceptos Clave</h3>
-        <ul>
-          <li><strong>Flujo:</strong> La cantidad de recurso que pasa a través de una arista.</li>
-          <li><strong>Capacidad:</strong> La cantidad máxima de flujo que puede pasar por una arista.</li>
-          <li><strong>Fuente y Sumidero:</strong> Los nodos desde donde comienza el flujo y donde termina.</li>
-          <li><strong>Red Residual:</strong> Representa las capacidades restantes después de enviar el flujo actual.</li>
-        </ul>
-      </section>
-
-      <section>
-        <h3>Algoritmos Comunes de Flujos en Grafos</h3>
-        <ul>
-          <li><strong>Algoritmo de Ford-Fulkerson:</strong> Encuentra el flujo máximo iterativamente aumentando el flujo en caminos de aumento.</li>
-          <li><strong>Algoritmo de Edmonds-Karp:</strong> Una implementación específica del Ford-Fulkerson que utiliza BFS para encontrar caminos de aumento.</li>
-          <li><strong>Algoritmo de Dinic:</strong> Más eficiente que Ford-Fulkerson y Edmonds-Karp, utiliza una red de niveles para encontrar múltiples caminos de aumento simultáneamente.</li>
-        </ul>
-      </section>
-
-      <section>
-        <h3>Ejemplo de Código: Algoritmo de Edmonds-Karp en Python</h3>
-        <pre>
-{`from collections import deque
-
-def bfs(residual_graph, source, sink, parent):
-    visited = set()
-    queue = deque()
-    queue.append(source)
-    visited.add(source)
-    
-    while queue:
-        u = queue.popleft()
-        for v, capacity in residual_graph[u].items():
-            if v not in visited and capacity > 0:
-                queue.append(v)
-                visited.add(v)
-                parent[v] = u
-                if v == sink:
-                    return True
-    return False
-
-def edmonds_karp(graph, source, sink):
-    residual_graph = {u: dict(v) for u, v in graph.items()}
-    parent = {}
-    max_flow = 0
-
-    while bfs(residual_graph, source, sink, parent):
-        path_flow = float('Inf')
-        s = sink
-        while s != source:
-            path_flow = min(path_flow, residual_graph[parent[s]][s])
-            s = parent[s]
+        <h3>Recursos</h3>
         
-        max_flow += path_flow
-
-        v = sink
-        while v != source:
-            u = parent[v]
-            residual_graph[u][v] -= path_flow
-            residual_graph[v][u] = residual_graph.get(v, {}).get(u, 0) + path_flow
-            v = u
-
-    return max_flow
-
-# Ejemplo de uso
-graph = {
-    'S': {'A': 16, 'C': 13},
-    'A': {'B': 12, 'C': 10},
-    'B': {'D': 20},
-    'C': {'A': 4, 'D': 14},
-    'D': {'B': 7, 'T': 4},
-    'T': {}
-}
-
-source = 'S'
-sink = 'T'
-
-print("Flujo máximo:", edmonds_karp(graph, source, sink))  # Salida: Flujo máximo: 23`}
-        </pre>
-      </section>
-
-      <section>
-        <h3>Recursos Adicionales</h3>
-        <ul>
-          <li>
-            <a href="https://es.wikipedia.org/wiki/Flujo_en_grafo" target="_blank" rel="noopener noreferrer">
-              Wikipedia: Flujo en grafo
-            </a>
-          </li>
-          <li>
-            <a href="https://www.geeksforgeeks.org/ford-fulkerson-algorithm-for-maximum-flow-problem/" target="_blank" rel="noopener noreferrer">
-              GeeksforGeeks: Algoritmo de Ford-Fulkerson
-            </a>
-          </li>
-          <li>
-            <a href="https://www.youtube.com/watch?v=GW0KJ-KbxIg" target="_blank" rel="noopener noreferrer">
-              Video: Algoritmo de Edmonds-Karp
-            </a>
-          </li>
-          <li>
-            <a href="https://visualgo.net/en/flow" target="_blank" rel="noopener noreferrer">
-              Visualgo: Visualización de Algoritmos de Flujos en Grafos
-            </a>
-          </li>
-        </ul>
-      </section>
-
-      <section>
-        <h3>Diagramas y Visualizaciones</h3>
-        <p>
-          Utiliza <a href="https://visualgo.net/en/flow" target="_blank" rel="noopener noreferrer">Visualgo</a> para visualizar cómo funcionan los algoritmos de flujo en grafos, incluyendo el algoritmo de Edmonds-Karp.
-        </p>
-        <img src="https://visualgo.net/en/flow" alt="Visualización de Flujos en Grafos" style={{ width: '100%', maxWidth: '600px' }} />
+        <div className="resources-section">
+          
+          {/* Páginas Web */}
+          <div className="resource-category">
+            <h4>Páginas Web</h4>
+            <ul>
+              {webResources.map((resource, index) => (
+                <li key={index} className={resource.highlighted ? 'highlighted-link' : ''}>
+                  <a href={resource.url} target="_blank" rel="noopener noreferrer">
+                    {resource.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            {webResources.some(resource => resource.highlighted)}
+          </div>
+          
+          {/* Videos de YouTube */}
+          <div className="resource-category">
+            <h4>Videos de YouTube</h4>
+            <div className="youtube-videos">
+              {youtubeVideos.map((video, index) => {
+                const videoId = getVideoId(video.url);
+                const embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}` : '';
+                return (
+                  <div className="youtube-video" key={index}>
+                    <p>{video.title}</p>
+                    {embedUrl ? (
+                      <iframe
+                        width="100%"
+                        height="200"
+                        src={embedUrl}
+                        title={video.title}
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                    ) : (
+                      <p>URL de video inválida.</p>
+                    )}
+                    {videoId && (
+                      <a href={`https://www.youtube.com/watch?v=${videoId}`} target="_blank" rel="noopener noreferrer">
+                        Ver Video
+                      </a>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          
+        </div>
       </section>
     </div>
   );

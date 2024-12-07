@@ -66,9 +66,3 @@ src/
 ├── App.css
 └── index.tsx
 ```
-
-## Recursos Adicionales
-- **Documentación del Curso**: Enlaces a documentos detallados sobre cada tema.
-- **Visualizaciones**: Utiliza Visualgo para interactuar y visualizar algoritmos en acción.
-- **Tutoriales y Videos**: Enlaces a tutoriales en línea y videos educativos para profundizar en cada tema.
-

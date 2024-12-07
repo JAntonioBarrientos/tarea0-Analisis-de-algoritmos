@@ -1,6 +1,43 @@
 import React from 'react';
+import './SortingAndSearch.css';
 
 const SortingAndSearch: React.FC = () => {
+  // Lista de videos de YouTube con sus títulos y URLs
+  const youtubeVideos = [
+    {
+      title: '10 Sorting Algorithms Easily Explained',
+      url: 'https://www.youtube.com/embed/rbbTd-gkajw',
+    },
+    {
+      title: 'Quick Sort Tutorial',
+      url: 'https://www.youtube.com/embed/RfXt_qHDEPw',
+    },
+    {
+      title: '15 Sorting Algorithms in 6 Minutes',
+      url: 'https://www.youtube.com/embed/kPRA0W1kECg',
+    },
+    {
+      title: 'Heap Sort Algorithm',
+      url: 'https://www.youtube.com/embed/l7-f9gS8VOs',
+    },
+    {
+      title: 'Understanding Sorting Algorithms',
+      url: 'https://www.youtube.com/embed/3j0SWDX4AtU',
+    },
+    {
+      title: 'Binary Search Algorithm - Computerphile',
+      url: 'https://www.youtube.com/embed/hDn8iOc30Tk',
+    },
+    {
+      title: 'Visualization of 24 Sorting Algorithms',
+      url: 'https://www.youtube.com/embed/BeoCbJPuvSE',
+    },
+    {
+      title: 'Getting Sorted & Big O Notation',
+      url: 'https://www.youtube.com/embed/kgBjXUE_Nwc',
+    },
+  ];
+
   return (
     <div className="topic-content">
       <h2>Algoritmos de Ordenamiento y Búsqueda</h2>
@@ -8,108 +45,82 @@ const SortingAndSearch: React.FC = () => {
       <section>
         <h3>Introducción</h3>
         <p>
-          Los algoritmos de ordenamiento y búsqueda son fundamentales en la informática y el análisis de algoritmos. Estos algoritmos permiten organizar y encontrar datos de manera eficiente, lo cual es crucial para el rendimiento de las aplicaciones.
+          Los <strong>algoritmos de ordenamiento y búsqueda</strong> son fundamentales en las ciencias de la computación y el análisis de algoritmos. Permiten organizar y localizar datos de manera eficiente, lo cual es crucial para el rendimiento de las aplicaciones y sistemas.
         </p>
       </section>
 
       <section>
-        <h3>Algoritmos de Ordenamiento</h3>
-        <ul>
-          <li><strong>Bubble Sort:</strong> Un algoritmo simple que compara y intercambia elementos adyacentes si están en el orden incorrecto.</li>
-          <li><strong>Quick Sort:</strong> Un algoritmo eficiente que utiliza el enfoque de divide y vencerás para ordenar elementos.</li>
-          <li><strong>Merge Sort:</strong> Otro algoritmo de divide y vencerás que divide el array en subarrays, los ordena y luego los fusiona.</li>
-          <li><strong>Heap Sort:</strong> Utiliza una estructura de datos llamada heap para ordenar los elementos.</li>
-        </ul>
-      </section>
-
-      <section>
-        <h3>Algoritmos de Búsqueda</h3>
-        <ul>
-          <li><strong>Binary Search:</strong> Un método eficiente para encontrar un elemento en una lista ordenada dividiendo el espacio de búsqueda a la mitad en cada paso.</li>
-          <li><strong>Linear Search:</strong> Un método sencillo que verifica cada elemento de la lista secuencialmente hasta encontrar el objetivo.</li>
-        </ul>
-      </section>
-
-      <section>
-        <h3>Ejemplos de Código</h3>
-        <h4>Bubble Sort en JavaScript</h4>
-        <pre>
-{`function bubbleSort(arr) {
-  let n = arr.length;
-  for(let i = 0; i < n-1; i++) {
-    for(let j = 0; j < n-i-1; j++) {
-      if(arr[j] > arr[j+1]) {
-        // Intercambiar
-        let temp = arr[j];
-        arr[j] = arr[j+1];
-        arr[j+1] = temp;
-      }
-    }
-  }
-  return arr;
-}
-
-const array = [64, 34, 25, 12, 22, 11, 90];
-console.log("Sorted array:", bubbleSort(array));`}
-        </pre>
-
-        <h4>Binary Search en Python</h4>
-        <pre>
-{`def binary_search(arr, target):
-    left, right = 0, len(arr) -1
-    while left <= right:
-        mid = (left + right) // 2
-        if arr[mid] == target:
-            return mid
-        elif arr[mid] < target:
-            left = mid +1
-        else:
-            right = mid -1
-    return -1
-
-array = [2, 3, 4, 10, 40]
-target = 10
-
-result = binary_search(array, target)
-if result != -1:
-    print("Elemento encontrado en el índice:", result)
-else:
-    print("Elemento no encontrado")`}
-        </pre>
-      </section>
-
-      <section>
-        <h3>Recursos Adicionales</h3>
-        <ul>
-          <li>
-            <a href="https://es.wikipedia.org/wiki/Ordenamiento" target="_blank" rel="noopener noreferrer">
-              Wikipedia: Ordenamiento
-            </a>
-          </li>
-          <li>
-            <a href="https://www.geeksforgeeks.org/sorting-algorithms/" target="_blank" rel="noopener noreferrer">
-              GeeksforGeeks: Sorting Algorithms
-            </a>
-          </li>
-          <li>
-            <a href="https://www.youtube.com/watch?v=ZZuD6iUOXDE" target="_blank" rel="noopener noreferrer">
-              Video: Sorting Algorithms Animated
-            </a>
-          </li>
-          <li>
-            <a href="https://visualgo.net/en/sorting" target="_blank" rel="noopener noreferrer">
-              Visualgo: Visualización de Algoritmos de Ordenamiento
-            </a>
-          </li>
-        </ul>
-      </section>
-
-      <section>
-        <h3>Diagramas y Visualizaciones</h3>
-        <p>
-          Puedes utilizar herramientas como <a href="https://visualgo.net/en/sorting" target="_blank" rel="noopener noreferrer">Visualgo</a> para visualizar cómo funcionan los diferentes algoritmos de ordenamiento y búsqueda.
-        </p>
-        <img src="https://visualgo.net/en/sorting" alt="Visualización de Algoritmos de Ordenamiento" style={{ width: '100%', maxWidth: '600px' }} />
+        <h3>Recursos</h3>
+        
+        <div className="resources-section">
+          
+          {/* Videos de YouTube */}
+          <div className="resource-category">
+            <h4>Videos de YouTube</h4>
+            <div className="youtube-videos">
+              {youtubeVideos.map((video, index) => (
+                <div className="youtube-video" key={index}>
+                  <p>{video.title}</p>
+                  <iframe
+                    width="100%"
+                    height="200"
+                    src={video.url}
+                    title={video.title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                  <a href={`https://www.youtube.com/watch?v=${video.url.split('v=')[1]}`} target="_blank" rel="noopener noreferrer">
+                    Ver Video
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Páginas Web */}
+          <div className="resource-category">
+            <h4>Páginas Web</h4>
+            <ul>
+              <li>
+                <a href="https://www.geeksforgeeks.org/introduction-to-sorting-algorithm/" target="_blank" rel="noopener noreferrer">
+                  Introducción a los Algoritmos de Ordenamiento - GeeksforGeeks
+                </a>
+              </li>
+              <li>
+                <a href="https://www.programiz.com/dsa/sorting-algorithm" target="_blank" rel="noopener noreferrer">
+                  Algoritmos de Ordenamiento - Programiz
+                </a>
+              </li>
+              <li>
+                <a href="https://www.w3schools.com/dsa/index.php" target="_blank" rel="noopener noreferrer">
+                  Estructuras de Datos y Algoritmos - W3Schools
+                </a>
+              </li>
+              <li>
+                <a href="https://www.tutorialspoint.com/data_structures_algorithms/sorting_algorithms.htm" target="_blank" rel="noopener noreferrer">
+                  Algoritmos de Ordenamiento - TutorialsPoint
+                </a>
+              </li>
+              <li className="highlighted-link">
+                <a href="https://ocw.mit.edu/courses/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/resources/lecture-12-searching-and-sorting/" target="_blank" rel="noopener noreferrer">
+                  Lecture 12: Searching and Sorting - MIT OpenCourseWare
+                </a>
+              </li>
+              <li>
+                <a href="https://algorithmsin60days.com/blog/intro-to-searching-and-sorting-algos/" target="_blank" rel="noopener noreferrer">
+                  Introducción a Algoritmos de Búsqueda y Ordenamiento - Algorithms in 60 Days
+                </a>
+              </li>
+              <li>
+                <a href="https://pll.harvard.edu/course/cs50-introduction-computer-science" target="_blank" rel="noopener noreferrer">
+                  CS50: Introducción a la Ciencia de la Computación - Harvard
+                </a>
+              </li>
+            </ul>
+          </div>
+          
+        </div>
       </section>
     </div>
   );
